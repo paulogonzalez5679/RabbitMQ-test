@@ -187,3 +187,11 @@ docker compose up --build
 - Los puertos pueden variar si ya tienes servicios corriendo en tu máquina.
 - Para desarrollo local, puedes usar MongoDB Compass o el cliente `mongo` para inspeccionar la base de datos.
 - Si modificas las variables de entorno, reinicia los servicios para aplicar los cambios.
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 👥 Autores
+
+- **Paulo González** - *Dev* - [@paulogonzalez](https://github.com/paulogonzalez)
