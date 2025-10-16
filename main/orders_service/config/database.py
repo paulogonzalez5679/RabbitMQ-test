@@ -19,7 +19,7 @@ async def get_db() -> AsyncIOMotorDatabase:
     return db
 
 # Cargar variables de entorno desde .env.dev
-load_dotenv('.env.dev')
+load_dotenv('.env.prod')
 
 # Usar las variables específicas de tu .env.dev
 MONGODB_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")

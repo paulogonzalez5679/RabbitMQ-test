@@ -5,7 +5,7 @@ from aio_pika import connect_robust
 from dotenv import load_dotenv
 
 # Cargar variables de entorno desde .env.dev
-load_dotenv('.env.dev')
+load_dotenv('.env.prod')
 
 # Usar la URL de RabbitMQ desde .env.dev
 RABBITMQ_URL = os.getenv("RABBITMQ_URL")

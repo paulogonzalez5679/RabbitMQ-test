@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from aio_pika import connect_robust
 
 # Cargar variables de entorno desde .env (usar .env.dev si prefieres)
-load_dotenv('.env.dev')
+load_dotenv('.env.prod')
 
 # Leer RABBITMQ_URL desde .env
 RABBITMQ_URL = os.getenv("RABBITMQ_URL")
