@@ -158,7 +158,8 @@ docker compose up --build
 	```bash
 	docker compose logs -f notifications_service
 	```
-. Abre Swagger UI en [http://localhost:8000/docs](http://localhost:8000/docs)
+   Abre Swagger UI en [http://localhost:8000/docs](http://localhost:8000/docs)
+   <br/>
 3. Haz un POST a `/orders` con un cuerpo como:
 	```json
 	{
@@ -168,13 +169,15 @@ docker compose up --build
 	  "note": "Entrega rápida"
 	}
 	```
-4. El pedido se guardará en MongoDB y se publicará un mensaje en RabbitMQ.
+   <br/>
+4. El pedido se guardará en MongoDB y se publicará un mensaje en RabbitMQ.<br/>
+
 5. El servicio `notifications_service` consumirá el mensaje y verás en sus logs, puedes ejecutar `docker compose logs -f notifications_service` para ver a nivel de los logs:
 	```
 	[notifications_service] New order received: {'customer_name': 'Juan', 'product_id': 'ABC123', 'quantity': 2, 'note': 'Entrega rápida'}
 	```
 
-Tambien puedes ver los mensajes en la cola `orders_queue` desde la UI de RabbitMQ.
+<br/>Tambien puedes ver los mensajes en la cola `orders_queue` desde la UI de RabbitMQ.
 
 ---
 
