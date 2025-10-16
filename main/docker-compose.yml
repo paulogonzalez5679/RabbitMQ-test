@@ -1,0 +1,49 @@
+version: "3.8"
+services:
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672" # management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  mongo:
+    image: mongo:7.0
+    container_name: mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  orders_service:
+    build: ./orders_service
+    container_name: orders_service
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+      - MONGO_DB=orders_db
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:15672/
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - mongo
+      - rabbitmq
+
+  notifications_service:
+    build: ./notifications_service
+    container_name: notifications_service
+    environment:
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: always
+    depends_on:
+      - rabbitmq
+
+volumes:
+  mongo_data:
